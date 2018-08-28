@@ -3,13 +3,14 @@ package com.mybatis.service.impl;
 import com.mybatis.dao.UserDao;
 import com.mybatis.entities.User;
 import com.mybatis.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
-@Service("userService")
+@Service
 public class UserServiceImpl implements UserService {
-    @Resource
+    @Autowired
     private UserDao userDao;
 
     @Override

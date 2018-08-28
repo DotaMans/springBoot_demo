@@ -1,0 +1,14 @@
+------*springBoot整合MyBaits*-------------
+运行地址：http://localhost:8089/user/showUser?id=1
+
+steps：
+1，建表和建库，和配置application.properties中的mysql信息和mybaits信息，在pom.xml中添加mysql和mybaits驱动
+2，使用mybatis-generator-core-1.3.7生成表对应的dao层，entity层和mapper.xml
+3，创建service接口和service方法类(注入service)，这里需要注入dao层的方法
+4，创建controller层，用来映射访问地址，这里一般需要注入service(controller注解）
+5，创建Application入口，启动
+
+get:
+@Autowired和@Resource比较：
+相同：两者都可以注入的字段的效果
+不同：例子;A a，@Autowired是按照byName进行搜素，即A，而@Resource是按照byName进行搜索，即 a

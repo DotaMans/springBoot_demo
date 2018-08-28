@@ -1,0 +1,8 @@
+==================*SpringBoot整合Redis*===============
+
+step:
+1，application.properties中配置redis，在pom.xml下载需要的jar包
+2，新建RedisConfig配置类，主要针对redisTemplate作为访问redis前的拦截器 使用@Configuration和@Bean注解
+3，创建操作redis的工具类，主要针对四种类型：String,List,Hash,Set 使用@Reposity和@Autowired
+4，创建controller进行使用redis工具类 使用@Controller,@Autowired，@RequestMapping,@ResponseBody
+5，创建Application启动类 使用了@SpringBootApplication
