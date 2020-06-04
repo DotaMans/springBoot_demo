@@ -23,13 +23,14 @@ public class KafkaTemplateConfig {
     @Bean
     public KafkaTemplate<String,String> kafkaTemplate(){return  new KafkaTemplate<>(producerFactory());}
 
+    // @Bean method 'producerFactory' must not be private or final;
     @Bean
-    private ProducerFactory<String,String> producerFactory(){
+    public ProducerFactory<String,String> producerFactory(){
         return new DefaultKafkaProducerFactory<>(producerConfig());
     }
 
     @Bean
-    private Map<String, Object> producerConfig(){
+    public Map<String, Object> producerConfig(){
         Map<String, Object> props = new HashMap<>(16);
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaProperties.getBootstrapServers());
         props.put(ProducerConfig.RETRIES_CONFIG, kafkaProperties.getRetries());
@@ -46,16 +47,17 @@ public class KafkaTemplateConfig {
         factory.setConsumerFactory(consumerFactory());
         factory.setConcurrency(Integer.valueOf(kafkaProperties.getConcurrency()));
         factory.getContainerProperties().setAckMode(AbstractMessageListenerContainer.AckMode.MANUAL_IMMEDIATE);
+        factory.setBatchListener(true);
         return factory;
     }
 
-    @Bean
-    private ConsumerFactory<String,String> consumerFactory(){
+
+    public ConsumerFactory<String,String> consumerFactory(){
         return new DefaultKafkaConsumerFactory<>(consumerConfig());
     }
 
-    @Bean
-    private Map<String, Object> consumerConfig(){
+
+    public Map<String, Object> consumerConfig(){
         Map<String, Object> props = new HashMap<>(16);
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaProperties.getBootstrapServers());
         props.put(ConsumerConfig.GROUP_ID_CONFIG, kafkaProperties.getGroupId());

@@ -15,10 +15,10 @@ public class KafkaPropertiesConfig {
 
     @Bean
     @ConfigurationProperties(prefix = "kafka.first")
-    public KafkaProperties setKafkaFirstProperties(){return  new KafkaProperties();}
+    public KafkaProperties kafkaFirstProperties(){return  new KafkaProperties();}
 
 
     @Bean
     @ConfigurationProperties(prefix = "kafka.second")
-    public KafkaProperties setKafkaSecondProperties(){return  new KafkaProperties();}
+    public KafkaProperties kafkaSecondProperties(){return  new KafkaProperties();}
 }
