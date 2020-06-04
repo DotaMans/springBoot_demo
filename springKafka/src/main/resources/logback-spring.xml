@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+	<include resource="com/youcash/foundation/sdk/util/logging/logback-default.xml" />
+	<root level="INFO">
+		<appender-ref ref="FILE" />
+		<appender-ref ref="CONSOLE"/>
+	</root>
+
+	<springProfile processorName="!prod">
+		<logger processorName="com.youcash" level="INFO" additivity="false">
+			<appender-ref ref="FILE" />
+			<appender-ref ref="CONSOLE" />
+		</logger>
+		<logger processorName="org.springframework" level="ERROR" additivity="false">
+			<appender-ref ref="FILE" />
+			<appender-ref ref="CONSOLE" />
+		</logger>
+		<logger processorName="org.apache" level="ERROR" additivity="false">
+			<appender-ref ref="FILE" />
+			<appender-ref ref="CONSOLE" />
+		</logger>
+	</springProfile>
+
+	<springProfile processorName="prod">
+		<logger processorName="com.youcash" level="INFO" additivity="false">
+			<appender-ref ref="FILE" />
+		</logger>
+	</springProfile>
+
+</configuration>
